@@ -71,6 +71,7 @@ export default {
         filter: grayscale(80%);
         opacity: .9;
         transition: opacity .3s ease;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, .5);
 
         &:hover {
             opacity: 1;

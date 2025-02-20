@@ -117,7 +117,7 @@ export default {
                     font-size: 16px;
                     line-height: 1.7;
                     margin-bottom: 16px;
-                    text-align: left;
+                    text-align: justify;
                     color: #333;
                 }
                 

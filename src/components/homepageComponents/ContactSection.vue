@@ -11,25 +11,11 @@ export default {
                 email: '',
                 messaggio: ''
             },
-            formSubmitted: false,
-            isSubmitting: false,
-            errorMessage: '',
-            successMessage: '',
-            formspreeId: 'xdoqzkel' // Sostituisci con il tuo ID Formspree
         }
     },
     components: {
     },
     computed: {
-        isFormValid() {
-            return this.form.nome.trim() && 
-                   this.form.cognome.trim() && 
-                   this.isValidEmail(this.form.email) && 
-                   this.form.messaggio.trim();
-        },
-        formspreeEndpoint() {
-            return `https://formspree.io/f/${this.formspreeId}`;
-        },
         ...mapGetters(['currentLanguage']),
         language() {
             return this.currentLanguage;
@@ -38,52 +24,6 @@ export default {
     mounted() {
     },
     methods: {
-        isValidEmail(email) {
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailPattern.test(email);
-        },
-        async submitForm() {
-            if (!this.isFormValid) {
-                this.errorMessage = 'Per favore, compila tutti i campi correttamente.';
-                return;
-            }
-            
-            this.isSubmitting = true;
-            this.errorMessage = '';
-            
-            try {
-                const response = await fetch(this.formspreeEndpoint, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        nome: this.form.nome,
-                        cognome: this.form.cognome,
-                        email: this.form.email,
-                        messaggio: this.form.messaggio,
-                        _replyto: this.form.email,
-                        _subject: `Nuovo messaggio da ${this.form.nome} ${this.form.cognome}`
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    this.successMessage = 'Messaggio inviato con successo! Ti risponderemo presto.';
-                    this.formSubmitted = true;
-                    this.resetForm();
-                } else {
-                    throw new Error(data.error || 'Si è verificato un errore durante l\'invio');
-                }
-            } catch (error) {
-                this.errorMessage = 'Si è verificato un errore durante l\'invio. Riprova più tardi.';
-                console.error('Errore invio form:', error);
-            } finally {
-                this.isSubmitting = false;
-            }
-        },
         resetForm() {
             this.form = {
                 nome: '',
@@ -111,7 +51,7 @@ export default {
                         {{ successMessage }}
                     </div>
                     
-                    <form @submit.prevent="submitForm" class="contact-form-inner" action="https://formspree.io/f/xyyrleqn" method="POST">
+                    <form class="contact-form-inner" action="https://formspree.io/f/mzzdoeqb" method="POST">
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -170,26 +110,12 @@ export default {
                             ></textarea>
                         </div>
                         
-                        <!-- Campo honeypot per evitare spam -->
-                        <div style="display: none;">
-                            <input type="text" name="_gotcha">
-                        </div>
-                        
-                        <div v-if="errorMessage" class="alert alert-danger mb-3">
-                            {{ errorMessage }}
-                        </div>
-                        
                         <div class="form-submit text-center">
                             <button 
                                 type="submit" 
                                 class="submit-button" 
-                                :disabled="isSubmitting || !isFormValid"
                             >
-                                <span v-if="!isSubmitting">{{ language === 'it' ? 'Invia messaggio' : 'Send message' }}</span>
-                                <span v-else>
-                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                    {{ language === 'it' ? 'Invio in corso...' : 'Sending...' }}
-                                </span>
+                                <span>{{ language === 'it' ? 'Invia messaggio' : 'Send message' }}</span>
                             </button>
                         </div>
                         
