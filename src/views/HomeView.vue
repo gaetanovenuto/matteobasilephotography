@@ -1,12 +1,15 @@
 <script>
-import ThreePicsSection from '../components/homepageComponents/threePicsSection.vue';
+import FrontPageSection from '../components/homepageComponents/FrontPageSection.vue';
+import ProjectSeriesMenuSection from '../components/homepageComponents/ProjectSeriesMenuSection.vue';
+
 export default {
   data() {
     return {
     }
   },
   components: {
-    ThreePicsSection
+    FrontPageSection,
+    ProjectSeriesMenuSection
   },
   computed: {
 
@@ -21,7 +24,8 @@ export default {
 </script>
 
 <template>
-    <ThreePicsSection />
+    <FrontPageSection />
+    <ProjectSeriesMenuSection />
 </template>
 
 <style lang="scss" scoped>
