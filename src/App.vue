@@ -1,6 +1,7 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router';
 import AppHeader from './components/AppHeader.vue';
+import AppFooter from './components/AppFooter.vue';
 
 export default {
   data() {
@@ -11,6 +12,7 @@ export default {
     RouterLink,
     RouterView,
     AppHeader,
+    AppFooter,
   },
   computed: {
 
@@ -27,6 +29,7 @@ export default {
 <template>
   <AppHeader />
   <RouterView />
+  <AppFooter />
 </template>
 
 <style lang="scss" scoped>

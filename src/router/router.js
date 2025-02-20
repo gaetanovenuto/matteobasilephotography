@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import MainProjectView from '../views/MainProjectView.vue'
+import MainSeriesView from '../views/MainSeriesView.vue'
 import AlivaraView from '../views/Projects/AlivaraView.vue'
 import UgandaView from '../views/Series/UgandaView.vue'
 import MaroccoView from '../views/Series/MaroccoView.vue'
@@ -12,6 +14,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+    },
+    {
+      path: '/projects',
+      name: 'Projects',
+      component: MainProjectView,
+    },
+    {
+      path: '/series',
+      name: 'Series',
+      component: MainSeriesView,
     },
     {
       path: '/projects/alivara',

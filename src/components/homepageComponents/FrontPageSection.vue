@@ -6,8 +6,8 @@ export default {
     return {
         frontPage: [
           {
-            src: '/img/pexels/PexelsTurin.jpg',
-            alt: 'Turin'
+            src: '/img/pexels/PexelsBook.JPG',
+            alt: 'Matteo Basile Photography'
           },
         ]
     }
@@ -53,13 +53,14 @@ export default {
     filter: grayscale(100%);
     object-fit: cover;
     opacity: .9;
+    object-position: center 75%;
   }
 
   .logo-img {
     object-fit: contain;
     width: 350px;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: transparent;

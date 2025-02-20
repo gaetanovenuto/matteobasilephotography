@@ -6,13 +6,13 @@ export default {
     return {
         twoPics: [
           {
-            src: '/img/pexels/PexelsFog.jpg',
+            src: '/img/pexels/pexelsProjectPic.jpg',
             engName: 'Projects',
             itName: 'Progetti',
             href: '/projects'
           },
           {
-            src: '/img/pexels/PexelsBasketRim.jpg',
+            src: '/img/uganda/UgandaTree4.jpg',
             engName: 'Series',
             itName: 'Serie',
             href: '/series'
@@ -68,7 +68,7 @@ export default {
         height: 100vh;
         width: 100%;
         object-fit: cover;
-        filter: grayscale(80%);
+        filter: grayscale(30%);
         opacity: .9;
         transition: opacity .3s ease;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, .5);
