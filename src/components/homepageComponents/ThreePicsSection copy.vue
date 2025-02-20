@@ -4,16 +4,16 @@ export default {
     return {
         threePics: [
           {
-            src: '/img/pexels/PexelsBasketRim.jpg',
-            alt: 'Basket Rim'
+            src: '/img/fotomarocco/MaroccoBrasil.jpeg',
+            alt: 'Marocco Brasil'
           },
           {
-            src: '/img/pexels/PexelsFog.jpg',
-            alt: 'Fog'
+            src: '/img/fotomarocco/MaroccoTunnel.jpeg',
+            alt: 'Marocco Tunnel'
           },
           {
-            src: '/img/pexels/PexelsKidsBeach.jpg',
-            alt: 'Kids Beach'
+            src: '/img/uganda/UgandaTree1.jpg',
+            alt: 'Uganda Tree'
           }
         ]
     }
@@ -40,14 +40,11 @@ export default {
 
 <style lang="scss" scoped>
 .threePics {
-  position: relative;
 
   img {
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
-
   }
-
 }
 </style>
