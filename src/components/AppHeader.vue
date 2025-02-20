@@ -1,4 +1,6 @@
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
     data() {
         return {
@@ -7,13 +9,18 @@ export default {
                 portfolio: false,
                 progetti: false,
                 serie: false
-            }
+            },
+            language: 'it' // Imposta la lingua predefinita a italiano
         };
     },
     methods: {
+        ...mapActions(['changeLanguage']),
+        toggleLanguage() {
+            const currentLanguage = !this.language ;
+            this.changeLanguage(currentLanguage);
+        },
         toggleMenu() {
             this.isMenuOpen = !this.isMenuOpen;
-            // Blocca lo scroll del body quando il menu è aperto
             if (this.isMenuOpen) {
                 document.body.style.overflow = 'hidden';
             } else {
@@ -22,10 +29,15 @@ export default {
         },
         toggleDropdown(item) {
             this.activeItems[item] = !this.activeItems[item];
+        },
+    },
+    computed: {
+        ...mapGetters(['currentLanguage']),
+        language() {
+            return this.currentLanguage;
         }
     },
     beforeDestroy() {
-        // Ripristina lo scroll quando il componente viene distrutto
         document.body.style.overflow = '';
     }
 };
@@ -43,49 +55,75 @@ export default {
             <a href="https://www.tiktok.com/@mattebasi?_t=ZN-8tWNJGk8hR0&_r=1" class="social-link">
                 <i class="fa-brands fa-tiktok fa-xl"></i>
             </a>
+            <!-- Bandierina italiana per cambiare lingua -->
+            <img 
+                :src="language === 'it' ? '/img/icons/italy.png' : '/img/icons/united-kingdom.png'" 
+                alt="Cambia lingua" 
+                class="language-flag d-none d-md-inline-block" 
+                @click="toggleLanguage"
+                :title="language === 'it' ? 'Change language' : 'Cambia lingua'"
+            />
         </div>
 
         <div class="desktop-nav">
             <nav class="main-nav">
                 <ul class="main-menu">
                     <li class="menu-item">
-                        <a href="#" class="menu-link">Home</a>
+                        <router-link to="/" class="menu-link">
+                            {{ language === 'it' ? 'Home' : 'Home' }}
+                        </router-link>
                     </li>
                     <li class="menu-item has-submenu" 
                         @mouseenter="activeItems.portfolio = true" 
                         @mouseleave="activeItems.portfolio = false">
-                        <a href="#" class="menu-link">Portfolio</a>
+                        <a href="#" class="menu-link">
+                            {{ language === 'it' ? 'Portfolio' : 'Portfolio' }}
+                        </a>
                         <ul class="submenu" v-if="activeItems.portfolio">
                             <li class="submenu-item has-submenu"
                                 @mouseenter="activeItems.progetti = true"
                                 @mouseleave="activeItems.progetti = false">
-                                <a href="#" class="submenu-link">Progetti</a>
+                                <a href="#" class="submenu-link">
+                                    {{ language === 'it' ? 'Progetti' : 'Projects' }}
+                                </a>
                                 <ul class="submenu submenu-right" v-if="activeItems.progetti">
                                     <li class="submenu-item">
-                                        <a href="#" class="submenu-link">Alivara</a>
+                                        <router-link to="/projects/alivara" class="submenu-link">
+                                            {{ language === 'it' ? 'Alivara' : 'Alivara' }}
+                                        </router-link>
                                     </li>
                                 </ul>
                             </li>
                             <li class="submenu-item has-submenu"
                                 @mouseenter="activeItems.serie = true"
                                 @mouseleave="activeItems.serie = false">
-                                <a href="#" class="submenu-link">Serie</a>
+                                <a href="#" class="submenu-link">
+                                    {{ language === 'it' ? 'Serie' : 'Series' }}
+                                </a>
                                 <ul class="submenu submenu-right" v-if="activeItems.serie">
                                     <li class="submenu-item">
-                                        <a href="#" class="submenu-link">Marocco</a>
+                                        <router-link to="/series/marocco" class="submenu-link">
+                                            {{ language === 'it' ? 'Marocco' : 'Morocco' }}
+                                        </router-link>
                                     </li>
                                     <li class="submenu-item">
-                                        <a href="#" class="submenu-link">Uganda</a>
+                                        <router-link to="/series/uganda" class="submenu-link">
+                                            {{ language === 'it' ? 'Uganda' : 'Uganda' }}
+                                        </router-link>
                                     </li>
                                     <li class="submenu-item">
-                                        <a href="#" class="submenu-link">Autoritratti</a>
+                                        <router-link to="/series/self-portraits" class="submenu-link">
+                                            {{ language === 'it' ? 'Autoritratti' : 'Self Portraits' }}
+                                        </router-link>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link">About</a>
+                        <a href="#about" class="menu-link">
+                            {{ language === 'it' ? 'About' : 'About' }}
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -107,7 +145,7 @@ export default {
                 <nav class="mobile-nav">
                     <ul class="mobile-menu">
                         <li class="mobile-menu-item">
-                            <a href="#" class="mobile-menu-link">Home</a>
+                            <router-link to="/" @click="toggleMenu" class="mobile-menu-link">Home</router-link>
                         </li>
                         <li class="mobile-menu-item">
                             <div class="mobile-menu-header" @click="toggleDropdown('portfolio')">
@@ -122,7 +160,7 @@ export default {
                                     </div>
                                     <ul class="mobile-submenu" v-if="activeItems.progetti">
                                         <li class="mobile-submenu-item">
-                                            <a href="#" class="mobile-submenu-link">Alivara</a>
+                                            <router-link to="/projects/alivara" @click="toggleMenu" class="mobile-submenu-link">Alivara</router-link>
                                         </li>
                                     </ul>
                                 </li>
@@ -133,20 +171,20 @@ export default {
                                     </div>
                                     <ul class="mobile-submenu" v-if="activeItems.serie">
                                         <li class="mobile-submenu-item">
-                                            <a href="#" class="mobile-submenu-link">Marocco</a>
+                                            <router-link to="/series/marocco" @click="toggleMenu" class="mobile-submenu-link">Marocco</router-link>
                                         </li>
                                         <li class="mobile-submenu-item">
-                                            <a href="#" class="mobile-submenu-link">Uganda</a>
+                                            <router-link to="/series/uganda" @click="toggleMenu" class="mobile-submenu-link">Uganda</router-link>
                                         </li>
                                         <li class="mobile-submenu-item">
-                                            <a href="#" class="mobile-submenu-link">Autoritratti</a>
+                                            <router-link to="/series/self-portraits" @click="toggleMenu" class="mobile-submenu-link">Autoritratti</router-link>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#" class="mobile-menu-link">About</a>
+                            <a href="#about" @click="toggleMenu" class="mobile-menu-link">About</a>
                         </li>
                     </ul>
                 </nav>
@@ -191,6 +229,18 @@ export default {
         display: flex;
         gap: 18px;
         margin-left: 32px;
+
+        .language-flag {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
 
         .social-link {
             display: flex;

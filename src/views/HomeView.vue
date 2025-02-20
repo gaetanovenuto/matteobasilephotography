@@ -1,6 +1,8 @@
 <script>
 import FrontPageSection from '../components/homepageComponents/FrontPageSection.vue';
 import ProjectSeriesMenuSection from '../components/homepageComponents/ProjectSeriesMenuSection.vue';
+import AboutSection from '../components/homepageComponents/AboutSection.vue';
+import ContactSection from '../components/homepageComponents/ContactSection.vue';
 
 export default {
   data() {
@@ -9,7 +11,9 @@ export default {
   },
   components: {
     FrontPageSection,
-    ProjectSeriesMenuSection
+    ProjectSeriesMenuSection,
+    AboutSection,
+    ContactSection
   },
   computed: {
 
@@ -25,7 +29,9 @@ export default {
 
 <template>
     <FrontPageSection />
+    <AboutSection />
     <ProjectSeriesMenuSection />
+    <ContactSection />
 </template>
 
 <style lang="scss" scoped>

@@ -1,4 +1,6 @@
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -13,7 +15,10 @@ export default {
   components: {
   },
   computed: {
-
+    ...mapGetters(['currentLanguage']),
+        language() {
+            return this.currentLanguage;
+        }
   },
   mounted() {
 
@@ -31,7 +36,7 @@ export default {
         <img src="/img/MatteoBasileLogoNoBG.png" alt="Matteo Basile Photography" class="img-fluid logo-img">
       </div>
       <div class="header-text fs-3 text-white fw-light">
-        Explore the reality. Capture the moment.
+        {{ language === 'it' ? 'Esplora la realtà. Cattura il momento.' : 'Explore the reality. Capture the moment.' }}
       </div>
     </div>
     

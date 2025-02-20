@@ -1,16 +1,20 @@
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
         twoPics: [
           {
             src: '/img/pexels/PexelsFog.jpg',
-            alt: 'Projects',
+            engName: 'Projects',
+            itName: 'Progetti',
             href: '/projects'
           },
           {
             src: '/img/pexels/PexelsBasketRim.jpg',
-            alt: 'Series',
+            engName: 'Series',
+            itName: 'Serie',
             href: '/series'
           }
         ]
@@ -19,7 +23,10 @@ export default {
   components: {
   },
   computed: {
-
+    ...mapGetters(['currentLanguage']),
+        language() {
+            return this.currentLanguage;
+        }
   },
   mounted() {
 
@@ -36,11 +43,11 @@ export default {
             <img :src="image.src" :alt="image.alt" class="img-fluid threePics-img">
             <div class="info text-center">
                 <div class="text-white label">
-                    {{ image.alt }}
+                    {{ language === 'it' ? image.itName : image.engName }}
                 </div>
                 <button class="btn info-btn mt-3">
                     <a :href="image.href" class="text-white text-decoration-none">
-                        Vedi galleria
+                        {{ language === 'it' ? 'Vedi Galleria' : 'See Gallery' }}
                     </a>
                 </button>
             </div>
@@ -58,9 +65,10 @@ export default {
     }
 
     img {
-        height: 100%;
+        height: 100vh;
+        width: 100%;
         object-fit: cover;
-        filter: grayscale(100%);
+        filter: grayscale(80%);
         opacity: .9;
         transition: opacity .3s ease;
 
@@ -89,7 +97,7 @@ export default {
                 background-color: white;
                 
                 a {
-                    color: black !important;
+                    color: rgb(124, 124, 124) !important;
                     text-shadow: .5px .5px .5px rgba(0, 0, 0, .5);
                 }
             }
