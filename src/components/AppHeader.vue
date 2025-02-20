@@ -136,7 +136,7 @@ export default {
         </div>
 
         <div class="logo">
-            <img src="/img/MatteoBasileLogo.png" alt="Matteo Basile" title="Matteo Basile Photography" />
+            <img src="/img/MatteoBasileLogoNoBG.png" alt="Matteo Basile" title="Matteo Basile Photography" />
         </div>
 
         <!-- Offcanvas Menu per Mobile -->
@@ -145,46 +145,62 @@ export default {
                 <nav class="mobile-nav">
                     <ul class="mobile-menu">
                         <li class="mobile-menu-item">
-                            <router-link to="/" @click="toggleMenu" class="mobile-menu-link">Home</router-link>
+                            <router-link to="/" @click="toggleMenu" class="mobile-menu-link">
+                                {{ language === 'it' ? 'Home' : 'Home' }}
+                            </router-link>
                         </li>
                         <li class="mobile-menu-item">
                             <div class="mobile-menu-header" @click="toggleDropdown('portfolio')">
-                                <span>Portfolio</span>
+                                <span>
+                                    {{ language === 'it' ? 'Portfolio' : 'Portfolio' }}
+                                </span>
                                 <i class="fas" :class="activeItems.portfolio ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
                             </div>
                             <ul class="mobile-submenu" v-if="activeItems.portfolio">
                                 <li class="mobile-submenu-item">
                                     <div class="mobile-menu-header" @click="toggleDropdown('progetti')">
-                                        <span>Progetti</span>
+                                        <span>
+                                            {{ language === 'it' ? 'Progetti' : 'Projects' }}
+                                        </span>
                                         <i class="fas" :class="activeItems.progetti ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
                                     </div>
                                     <ul class="mobile-submenu" v-if="activeItems.progetti">
                                         <li class="mobile-submenu-item">
-                                            <router-link to="/projects/alivara" @click="toggleMenu" class="mobile-submenu-link">Alivara</router-link>
+                                            <router-link to="/projects/alivara" @click="toggleMenu" class="mobile-submenu-link">
+                                                {{ language === 'it' ? 'Alivara' : 'Alivara' }}
+                                            </router-link>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="mobile-submenu-item">
                                     <div class="mobile-menu-header" @click="toggleDropdown('serie')">
-                                        <span>Serie</span>
+                                        <span>
+                                            {{ language === 'it' ? 'Serie' : 'Series' }}
+                                        </span>
                                         <i class="fas" :class="activeItems.serie ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
                                     </div>
                                     <ul class="mobile-submenu" v-if="activeItems.serie">
                                         <li class="mobile-submenu-item">
-                                            <router-link to="/series/marocco" @click="toggleMenu" class="mobile-submenu-link">Marocco</router-link>
+                                            <router-link to="/series/marocco" @click="toggleMenu" class="mobile-submenu-link">
+                                                {{ language === 'it' ? 'Marocco' : 'Morocco' }}
+                                            </router-link>
                                         </li>
                                         <li class="mobile-submenu-item">
-                                            <router-link to="/series/uganda" @click="toggleMenu" class="mobile-submenu-link">Uganda</router-link>
+                                            <router-link to="/series/uganda" @click="toggleMenu" class="mobile-submenu-link">
+                                                {{ language === 'it' ? 'Uganda' : 'Uganda' }}
+                                            </router-link>
                                         </li>
                                         <li class="mobile-submenu-item">
-                                            <router-link to="/series/self-portraits" @click="toggleMenu" class="mobile-submenu-link">Autoritratti</router-link>
+                                            <router-link to="/series/self-portraits" @click="toggleMenu" class="mobile-submenu-link">
+                                                {{ language === 'it' ? 'Autoritratti' : 'Self Portraits' }}
+                                            </router-link>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#about" @click="toggleMenu" class="mobile-menu-link">About</a>
+                            <a href="#about" @click="toggleMenu" class="mobile-menu-link">{{ language === 'it' ? 'About' : 'About' }}</a>
                         </li>
                     </ul>
                 </nav>
@@ -199,6 +215,13 @@ export default {
                     <a href="https://www.tiktok.com/@mattebasi?_t=ZN-8tWNJGk8hR0&_r=1" class="mobile-social-link">
                         <i class="fa-brands fa-tiktok fa-2x"></i>
                     </a>
+                    <img 
+                        :src="language === 'it' ? '/img/icons/italy.png' : '/img/icons/united-kingdom.png'" 
+                        alt="Cambia lingua" 
+                        class="language-flag d-md-inline-block" 
+                        @click="toggleLanguage"
+                        :title="language === 'it' ? 'Change language' : 'Cambia lingua'"
+                    />
                 </div>
             </div>
         </div>
@@ -212,9 +235,11 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 16px 24px;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    position: relative;
+    background-color: rgba(255, 255, 255, 0.829);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.233);
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
     height: 80px;
     
     .desktop-nav {
@@ -229,18 +254,6 @@ export default {
         display: flex;
         gap: 18px;
         margin-left: 32px;
-
-        .language-flag {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-
-            &:hover {
-                transform: scale(1.1);
-            }
-        }
 
         .social-link {
             display: flex;
@@ -655,6 +668,18 @@ export default {
                 }
             }
         }
+    }
+}
+
+.language-flag {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
     }
 }
 

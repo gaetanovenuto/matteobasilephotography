@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 .frontPage {
   position: relative;
-  
+  padding-top: 80px;
 
   img {
     height: calc(100vh - 80px);
