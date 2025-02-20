@@ -46,7 +46,7 @@ export default {
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
-
+    opacity: .9;
   }
 
 }
