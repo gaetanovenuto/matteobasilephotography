@@ -78,7 +78,7 @@ export default {
             <img 
                 :src="language === 'it' ? '/img/icons/italy.png' : '/img/icons/united-kingdom.png'" 
                 alt="Cambia lingua" 
-                class="language-flag d-none d-md-inline-block" 
+                class="language-flag d-none" 
                 @click="toggleLanguage"
                 :title="language === 'it' ? 'Change language' : 'Cambia lingua'"
             />
@@ -702,6 +702,10 @@ export default {
 
     &:hover {
         transform: scale(1.1);
+    }
+
+    @media screen and (min-width: 770px) {
+        display: inline-block !important;
     }
 }
 

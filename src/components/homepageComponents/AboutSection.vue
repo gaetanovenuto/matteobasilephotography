@@ -29,7 +29,7 @@ export default {
                 <div class="col-md-4 col-12 mb-4 mb-md-0 image-container">
                     <img src="../../../public/img/fotoaboutme/MatteoPrincipalPhoto.JPG" alt="Matteo Basile al lavoro" class="feature-image">
                 </div>
-                <div class="col-md-4 col-12 mb-4 mb-md-0">
+                <div class="col-md-4 col-12">
                     <div class="section-title">
                         <h2 class="fw-bold"> {{ language === 'it' ? 'L\'artista dietro la lente.' : 'The artist behind the lens.' }} </h2>
                         <div class="title-underline"></div>
@@ -107,6 +107,29 @@ export default {
                     background-color: #000;
                     margin-top: 6px;
                 }
+
+                @media screen and (min-width: 767px) and (max-width: 820px) {
+                    padding-top: 700px;
+                }
+
+                @media screen and (min-width: 821px) and (max-width: 921px) {
+                    padding-top: 600px;
+                }
+
+                @media screen and (min-width: 922px) and (max-width: 1021px) {
+                    padding-top: 500px;
+                }
+
+                @media screen and (min-width: 1022px) and (max-width: 1200px) {
+                    padding-top: 300px;
+                }
+
+                @media screen and (min-width: 1200px) and (max-width: 1400px) {
+                    padding-top: 100px;
+                }
+
+                // Codice molto sporco ma soluzione per non far sparire il titolo in tablet versions
+
             }
             
             .about-text {

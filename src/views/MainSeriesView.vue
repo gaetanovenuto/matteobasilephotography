@@ -14,7 +14,7 @@ export default {
                 {
                     src: '/img/fotomarocco/MaroccoTown.JPG',
                     it: 'Marocco',
-                    en: 'Marocco',
+                    en: 'Morocco',
                     url: 'marocco'
                 },
                 {
