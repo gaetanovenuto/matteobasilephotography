@@ -115,7 +115,7 @@ export default {
 <template>
   <section class="marocco">
     <div class="maroccoView container">
-      <h1 class="text-center">Marocco</h1>
+      <h1 class="text-center">{{ language === 'it' ? 'Marocco' : 'Morocco' }}</h1>
       <p>
         {{ language === 'it' ? 'Nel 2021, ho vagato per le strade vibranti e le medine senza tempo del Marocco, catturando momenti che parlano di luce, consistenza e vita. Questa serie è uno sguardo all\'anima di una terra dove passato e presente si intrecciano, dove i colori danzano nei souk e le storie si raccontano nei volti di coloro che la chiamano casa. Attraverso queste immagini, vi invito a vivere il Marocco come l\'ho vissuto io: crudo, ricco e infinitamente affascinante.' : 'In 2021, I wandered through the vibrant streets and timeless medinas of Morocco, capturing moments that speak of light, texture, and life. This series is a glimpse into the soul of a land where past and present intertwine—where colors dance in the souks and stories unfold in the faces of those who call it home. Through these images, I invite you to experience Morocco as I did: raw, rich, and endlessly captivating.' }}
       </p>

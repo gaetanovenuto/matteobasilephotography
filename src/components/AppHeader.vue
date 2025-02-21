@@ -10,13 +10,14 @@ export default {
                 progetti: false,
                 serie: false
             },
-            language: 'it' // Imposta la lingua predefinita a italiano
+            language: 'it', // Imposta la lingua predefinita a italiano
+            submenuTimers: {} // Oggetto per memorizzare i timer dei sottomenu
         };
     },
     methods: {
         ...mapActions(['changeLanguage']),
         toggleLanguage() {
-            const currentLanguage = !this.language ;
+            const currentLanguage = !this.language;
             this.changeLanguage(currentLanguage);
         },
         toggleMenu() {
@@ -30,6 +31,22 @@ export default {
         toggleDropdown(item) {
             this.activeItems[item] = !this.activeItems[item];
         },
+        openSubmenu(item) {
+            // Annulla il timer di chiusura se esiste
+            if (this.submenuTimers[item]) {
+                clearTimeout(this.submenuTimers[item]);
+                delete this.submenuTimers[item];
+            }
+            // Apri il sottomenu
+            this.activeItems[item] = true;
+        },
+        closeSubmenu(item) {
+            // Imposta un timer per chiudere il sottomenu dopo 300ms
+            this.submenuTimers[item] = setTimeout(() => {
+                this.activeItems[item] = false;
+                delete this.submenuTimers[item];
+            }, 300); // Ritardo di 300ms
+        }
     },
     computed: {
         ...mapGetters(['currentLanguage']),
@@ -39,6 +56,8 @@ export default {
     },
     beforeDestroy() {
         document.body.style.overflow = '';
+        // Annulla tutti i timer quando il componente viene distrutto
+        Object.values(this.submenuTimers).forEach(timer => clearTimeout(timer));
     }
 };
 </script>
@@ -74,18 +93,18 @@ export default {
                         </router-link>
                     </li>
                     <li class="menu-item has-submenu" 
-                        @mouseenter="activeItems.portfolio = true" 
-                        @mouseleave="activeItems.portfolio = false">
+                        @mouseenter="openSubmenu('portfolio')" 
+                        @mouseleave="closeSubmenu('portfolio')">
                         <a href="#" class="menu-link">
                             {{ language === 'it' ? 'Portfolio' : 'Portfolio' }}
                         </a>
                         <ul class="submenu" v-if="activeItems.portfolio">
                             <li class="submenu-item has-submenu"
-                                @mouseenter="activeItems.progetti = true"
-                                @mouseleave="activeItems.progetti = false">
-                                <a href="#" class="submenu-link">
+                                @mouseenter="openSubmenu('progetti')"
+                                @mouseleave="closeSubmenu('progetti')">
+                                <router-link to="/projects" class="submenu-link">
                                     {{ language === 'it' ? 'Progetti' : 'Projects' }}
-                                </a>
+                                </router-link>
                                 <ul class="submenu submenu-right" v-if="activeItems.progetti">
                                     <li class="submenu-item">
                                         <router-link to="/projects/alivara" class="submenu-link">
@@ -95,11 +114,11 @@ export default {
                                 </ul>
                             </li>
                             <li class="submenu-item has-submenu"
-                                @mouseenter="activeItems.serie = true"
-                                @mouseleave="activeItems.serie = false">
-                                <a href="#" class="submenu-link">
+                                @mouseenter="openSubmenu('serie')"
+                                @mouseleave="closeSubmenu('serie')">
+                                <router-link to="/series" class="submenu-link">
                                     {{ language === 'it' ? 'Serie' : 'Series' }}
-                                </a>
+                                </router-link>
                                 <ul class="submenu submenu-right" v-if="activeItems.serie">
                                     <li class="submenu-item">
                                         <router-link to="/series/marocco" class="submenu-link">
@@ -119,9 +138,9 @@ export default {
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+</li>
                     <li class="menu-item">
-                        <a href="#about" class="menu-link">
+                        <a href="/#about" class="menu-link">
                             {{ language === 'it' ? 'About' : 'About' }}
                         </a>
                     </li>
@@ -200,7 +219,7 @@ export default {
                             </ul>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#about" @click="toggleMenu" class="mobile-menu-link">{{ language === 'it' ? 'About' : 'About' }}</a>
+                            <a href="/#about" @click="toggleMenu" class="mobile-menu-link">{{ language === 'it' ? 'About' : 'About' }}</a>
                         </li>
                     </ul>
                 </nav>
@@ -376,6 +395,7 @@ export default {
                     visibility: hidden;
                     transform: translateY(10px);
                     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    transition-delay: 1s;
                     
                     &::before {
                         content: '';
@@ -459,12 +479,14 @@ export default {
                     opacity: 1;
                     visibility: visible;
                     transform: translateY(0);
+                    transition-delay: 0s;
                 }
                 
                 .submenu-item:hover > .submenu {
                     opacity: 1;
                     visibility: visible;
                     transform: translateY(0);
+                    transition-delay: 0s;
                 }
             }
         }
