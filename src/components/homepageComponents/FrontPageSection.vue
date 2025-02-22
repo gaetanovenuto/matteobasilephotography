@@ -36,7 +36,7 @@ export default {
         <img src="/img/MatteoBasileLogoNoBG.png" alt="Matteo Basile Photography" class="img-fluid logo-img">
       </div>
       <div class="header-text fs-3 text-white fw-light">
-        {{ language === 'it' ? 'Esplora la realtà. Cattura il momento.' : 'Explore the reality. Capture the moment.' }}
+        {{ language === 'it' ? 'Attraverso i miei occhi.' : 'Through my eyes.' }}
       </div>
     </div>
     

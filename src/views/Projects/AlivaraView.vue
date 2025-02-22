@@ -14,57 +14,57 @@ export default {
             ],
             alivaraImgs: [
                 {
-                    src: '/img/fotoalivara/Alivara1.jpg',
+                    src: '/img/fotoalivara/alivara1.jpg',
                     it: 'La camera di letto di Franco',
                     en: 'Franco\'s bedroom'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara2.jpg',
+                    src: '/img/fotoalivara/alivara2.jpg',
                     it: 'Tavolo da cucina',
                     en: 'Kitchen table'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara3.jpg',
+                    src: '/img/fotoalivara/alivara3.jpg',
                     it: 'La preghiera mattutina di Franco e Maria',
                     en: 'Franco and Maria\'s morning prayer'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara4.jpg',
+                    src: '/img/fotoalivara/alivara4.jpg',
                     it: 'Maria controlla la pressione sanguigna di Franco al mattino presto',
                     en: 'Maria checks Franco\'s blood pressure early in the morning'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara5.jpg',
+                    src: '/img/fotoalivara/alivara5.jpg',
                     it: 'Maria controlla la pressione arteriosa di Franco dopo un improvviso calo',
                     en: 'Maria checks Franco\'s blood pressure after a sudden drop'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara6.jpg',
+                    src: '/img/fotoalivara/alivara6.jpg',
                     it: 'Franco sistema il letto',
                     en: 'Franco making his bed'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara7.jpg',
+                    src: '/img/fotoalivara/alivara7.jpg',
                     it: 'Franco cammina in corridoio',
                     en: 'Franco walks down the hallway'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara8.jpg',
+                    src: '/img/fotoalivara/alivara8.jpg',
                     it: 'Candeline di compleanno',
                     en: 'Birthday candles'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara9.jpg',
+                    src: '/img/fotoalivara/alivara9.jpg',
                     it: 'Ricordi di un passato lontano',
                     en: 'Memories of a distant past'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara10.jpg',
+                    src: '/img/fotoalivara/alivara10.jpg',
                     it: 'Franco che guarda una sua foto con la moglie',
                     en: 'Franco looking at a photo of him and his wife'
                 },
                 {
-                    src: '/img/fotoalivara/Alivara11.jpg',
+                    src: '/img/fotoalivara/alivara11.jpg',
                     it: 'Franco all\'ombra degli alberi',
                     en: 'Franco in the shade of the trees'
                 },
@@ -116,7 +116,7 @@ export default {
 </script>
 
 <template>
-    <div class="alivara-container">
+    <div class="alivara-container pb-2">
         <div class="row mt-4">
             <!-- Carosello di immagini (col-9) -->
             <div class="col-12 col-md-9 carousel-container">
