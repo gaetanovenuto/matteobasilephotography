@@ -222,8 +222,8 @@ export default {
 </script>
 
 <template>
-  <section class="marocco">
-    <div class="maroccoView container">
+  <section class="uganda">
+    <div class="ugandaView container">
       <h1 class="text-center">{{ language === 'it' ? 'Uganda' : 'Uganda' }}</h1>
       <p>
         {{ language === 'it' ? 'Nel 2024 ho trascorso sei mesi nella regione del West Nile in Uganda come volontario, insegnando in una scuola. Durante questo periodo, ho anche documentato la vita nei villaggi e l\'impatto del nostro lavoro di volontariato attraverso la fotografia, catturando momenti di interventi medici e di vita quotidiana della comunità. È stata un\'esperienza significativa che mi ha permesso di imparare dalle comunità locali e di condividere le loro realtà quotidiane attraverso il mio obiettivo.' : 'In 2024, I spent six months in the West Nile region of Uganda as a volunteer, teaching skills development. During this time, I also documented life in the villages and the impact of our volunteer work through photography, capturing moments from medical outreaches and daily community life. It was a meaningful experience that allowed me to learn from the local communities while sharing their daily realities through my lens.' }}
@@ -257,10 +257,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.marocco {
+.uganda {
   background-color: #f9f9f9;
 }
-.maroccoView {
+.ugandaView {
   padding-top: 120px;
   max-width: 1600px;
   margin: 0 auto;
@@ -275,6 +275,7 @@ export default {
     position: relative;
     opacity: 0;
     animation: fadeUp 1s ease-out forwards;
+    word-wrap: break-word;
     
     &::after {
       content: '';
@@ -490,7 +491,7 @@ export default {
     }
   }
 
-  .maroccoView h1 {
+  .ugandaView h1 {
     font-size: 3rem;
   }
   
@@ -508,11 +509,11 @@ export default {
     }
   }
 
-  .maroccoView {
+  .ugandaView {
     padding-top: 100px;
     
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
     
     p {

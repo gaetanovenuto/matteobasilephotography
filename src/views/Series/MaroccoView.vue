@@ -166,6 +166,7 @@ export default {
     position: relative;
     opacity: 0;
     animation: fadeUp 1s ease-out forwards;
+    word-wrap: break-word;
     
     &::after {
       content: '';
@@ -403,7 +404,7 @@ export default {
     padding-top: 100px;
     
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
     
     p {

@@ -106,8 +106,8 @@ export default {
 
 <template>
   <section class="marocco">
-    <div class="maroccoView container">
-      <h1 class="text-center">{{ language === 'it' ? 'Autoritratti' : 'Self-portraits' }}</h1>
+    <div class="selfPortraitsView container">
+      <h1 class="text-center m-0">{{ language === 'it' ? 'Autoritratti' : 'Self-portraits' }}</h1>
       <p>
         {{ language === 'it' ? 'Nel 2023 ho puntato l\'obiettivo su me stesso, non solo per catturare un\'immagine, ma per esplorare le profondità dell\'identità, dell\'emozione e della trasformazione. Attraverso questa serie di autoritratti, ho cercato frammenti di chi ero, chi sono e chi sto diventando. Ogni fotogramma è un momento di introspezione, a volte crudo, a volte incerto, sempre onesto. Questa non è solo una raccolta di fotografie, ma un dialogo con me stesso, un viaggio tranquillo verso la scoperta di sé.' : 'In 2023, I turned the lens on myself, not just to capture an image, but to explore the depths of identity, emotion, and transformation. Through this series of self-portraits, I searched for fragments of who I was, who I am, and who I am becoming. Each frame is a moment of introspection—sometimes raw, sometimes uncertain, always honest. This is not just a collection of photographs, but a dialogue with myself, a quiet journey toward self-discovery.' }}
       </p>
@@ -143,13 +143,13 @@ export default {
 .marocco {
   background-color: #f9f9f9;
 }
-.maroccoView {
+.selfPortraitsView {
   padding-top: 120px;
   max-width: 1600px;
   margin: 0 auto;
 
   h1 {
-    font-size: 4rem;
+    font-size: 40px;
     font-weight: 300;
     letter-spacing: 4px;
     margin-bottom: 2rem;
@@ -158,6 +158,7 @@ export default {
     position: relative;
     opacity: 0;
     animation: fadeUp 1s ease-out forwards;
+    word-wrap: break-word;
     
     &::after {
       content: '';
@@ -373,7 +374,7 @@ export default {
     }
   }
 
-  .maroccoView h1 {
+  .selfPortraitsView h1 {
     font-size: 3rem;
   }
   
@@ -391,11 +392,11 @@ export default {
     }
   }
 
-  .maroccoView {
+  .selfPortraitsView {
     padding-top: 100px;
     
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
     
     p {

@@ -141,7 +141,7 @@ export default {
 </li>
                     <li class="menu-item">
                         <a href="/#about" class="menu-link">
-                            {{ language === 'it' ? 'About' : 'About' }}
+                            {{ language === 'it' ? 'Chi sono' : 'About' }}
                         </a>
                     </li>
                 </ul>
@@ -258,7 +258,7 @@ export default {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.233);
     position: fixed;
     z-index: 9999;
-    width: 100%;
+    width: 100vw;
     height: 80px;
     
     .desktop-nav {

@@ -26,11 +26,11 @@ export default {
     <section class="about d-flex align-items-center" id="about">
         <div class="container">
             <div class="row m-0 p-0 justify-content-between align-items-center">
-                <div class="col-md-4 col-12 mb-4 mb-md-0 image-container">
+                <div class="col-lg-4 col-12 mb-4 mb-md-0 image-container">
                     <img src="../../../public/img/fotoaboutme/MatteoPrincipalPhoto.JPG" alt="Matteo Basile al lavoro" class="feature-image">
                 </div>
-                <div class="col-md-4 col-12">
-                    <div class="section-title">
+                <div class="col-lg-4 col-12">
+                    <div class="section-title mt-2">
                         <h2 class="fw-bold"> {{ language === 'it' ? 'L\'artista dietro la lente.' : 'The artist behind the lens.' }} </h2>
                         <div class="title-underline"></div>
                     </div>
@@ -46,7 +46,7 @@ export default {
                         </p>
                     </div>
                 </div>
-                <div class="col-md-4 col-12 image-container">
+                <div class="col-lg-4 col-12 image-container">
                     <img src="../../../public/img/fotoaboutme/MatteoHalfBody.JPG" alt="Matteo Basile" class="profile-image">
                 </div>
             </div>
@@ -58,7 +58,8 @@ export default {
 .about {
     margin: 60px 0;
     overflow: hidden;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     
     .container {
         max-width: 1600px;
@@ -107,28 +108,6 @@ export default {
                     background-color: #000;
                     margin-top: 6px;
                 }
-
-                @media screen and (min-width: 767px) and (max-width: 820px) {
-                    padding-top: 700px;
-                }
-
-                @media screen and (min-width: 821px) and (max-width: 921px) {
-                    padding-top: 600px;
-                }
-
-                @media screen and (min-width: 922px) and (max-width: 1021px) {
-                    padding-top: 500px;
-                }
-
-                @media screen and (min-width: 1022px) and (max-width: 1200px) {
-                    padding-top: 300px;
-                }
-
-                @media screen and (min-width: 1200px) and (max-width: 1400px) {
-                    padding-top: 100px;
-                }
-
-                // Codice molto sporco ma soluzione per non far sparire il titolo in tablet versions
 
             }
             
