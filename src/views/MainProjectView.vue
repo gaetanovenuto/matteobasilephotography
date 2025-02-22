@@ -6,7 +6,7 @@ export default {
         return {
             projectCoverImg: [
                 {
-                    src: '/img/fotoalivara/Alivara3.jpg',
+                    src: '/img/fotoalivara/alivara3.jpg',
                     alt: 'Alivara',
                     url: 'alivara'
                 },
@@ -51,6 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .projectCoverImg {
+    height: calc(100vh - 100px);
     .card-container {
         position: relative;
         overflow: hidden;
