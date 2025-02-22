@@ -104,6 +104,10 @@ export default {
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.3s ease;
 
+        @media screen and (max-width: 576px) {
+            padding: 3px 10px;
+        }
+
         &:hover {
             background-color: rgba(0, 86, 179, 0.9);
             transform: translate(-50%, -50%) scale(1.05);
@@ -112,6 +116,10 @@ export default {
         a {
             color: inherit;
             text-decoration: none;
+            
+            @media screen and (max-width: 576px) {
+                font-size: 1rem;
+            }
         }
     }
 }
