@@ -29,18 +29,19 @@ export default {
 <template>
     <div class="projectCoverImg row m-0 pt-5 d-flex justify-content-between flex-wrap">
         <div v-for="(image, index) in projectCoverImg" 
-        :key="index" class="col-12 col-md-6 mt-5 px-2">
+             :key="index" 
+             class="col-12 col-md-6 mt-5 px-2">
             <div class="card-container">
-                <img  
-                     :src="image.src" 
-                     :alt="image.alt" 
-                     class="img-fluid projectCover-img"
-                     >
-                <h2 class="text-white" :class="!image.url ? 'no-button' : ''">
+                <img 
+                    :src="image.src" 
+                    :alt="image.alt" 
+                    class="img-fluid projectCover-img"
+                >
+                <h2 class="text-white" :class="{ 'no-button': !image.url, 'work-in-progress': !image.url }">
                     {{ image.alt }}
                 </h2>
                 <button v-if="image.url" class="project-button">
-                    <router-link  :to="/projects/ + image.url" class="text-white text-decoration-none">
+                    <router-link :to="/projects/ + image.url" class="text-white text-decoration-none">
                         {{ language === 'it' ? 'Vedi Progetto' : 'See Project' }}
                     </router-link>
                 </button>
@@ -52,6 +53,7 @@ export default {
 <style lang="scss" scoped>
 .projectCoverImg {
     height: calc(100vh - 100px);
+
     .card-container {
         position: relative;
         overflow: hidden;
@@ -85,10 +87,27 @@ export default {
         transform: translate(-50%, -50%);
         color: white;
         text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
+        font-size: 2rem;
+        word-wrap: break-word;
+        text-align: center;
+        width: 90%; 
+        
+        @media screen and (max-width: 576px) {
+            font-size: 1.5rem; 
+            width: 80%; 
+        }
     }
 
     .no-button {
         top: 50%;
+    }
+
+    .work-in-progress {
+        @media screen and (max-width: 576px) {
+            top: 50%; 
+            transform: translate(-50%, -50%);
+            padding: 0 15px;
+        }
     }
 
     .project-button {
@@ -116,7 +135,7 @@ export default {
         a {
             color: inherit;
             text-decoration: none;
-            
+
             @media screen and (max-width: 576px) {
                 font-size: 1rem;
             }
@@ -124,7 +143,6 @@ export default {
     }
 }
 
-/* Animazione di ingresso per la card */
 @keyframes slideInLeft {
     from {
         transform: translateX(-100%);
