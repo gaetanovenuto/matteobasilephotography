@@ -4,8 +4,8 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            currentImageIndex: 0,
-            intervalId: null,
+            currentImageIndex: 0, // Indice dell'immagine corrente
+            intervalId: null, // ID dell'intervallo per il carosello
             alivaraText: [
                 {
                     it: 'Alivara, ossia l\'albero di Ulivo in siciliano, racchiude l\'essenza di Franco. Come l\'ulivo, simbolo di fede, resilienza e speranza, la sua vita è un intreccio di radici profonde e forza interiore. Nel silenzio della vecchiaia, le sfide della vita sembrano spesso insormontabili: la malattia, la solitudine e il peso del tempo che incombe. Eppure, nessun cammino viene affrontato davvero da soli. Franco è un uomo anziano che ha attraversato il dolore, la malattia e il peso del tempo con una resilienza incrollabile, sorretta dalla sua fede profonda in Cristo. Rimasto vedovo nel 1988, Franco ha affrontato la perdita della moglie con forza e gratitudine, mantenendo uno spirito positivo e un legame indissolubile con la sua fede. Negli ultimi anni, le difficoltà legate all\'età avanzata e alla salute precaria hanno trasformato ogni giornata in una sfida. Tuttavia, la presenza amorevole di sua figlia Maria, che dedica le sue giornate interamente a prendersi cura di lui, è una testimonianza viva di amore e sacrificio. Il loro rapporto intreccia passato e presente, mostrando come l\'affetto familiare possa colmare il vuoto lasciato dalla solitudine. I caregiver donano tempo, amore e forza senza chiedere nulla in cambio, ma il loro valore rimane spesso invisibile, sottovalutato, eppure indispensabile per la società. Il progetto esplora temi universali come la vulnerabilità dell\'anzianità, il peso del tempo che scorre, la potenza dell\'amore familiare e la resilienza dello spirito umano quando radicato in una fede profonda. Un viaggio visivo che invita a riflettere sull\'importanza di chi resta accanto nei momenti più difficili, sulla bellezza della fede che dà forza, sulla resilienza che trova radici nell\'amore e sugli anziani, spesso dimenticati, privando la società di un patrimonio umano e culturale che meriterebbe rispetto e ascolto.',
@@ -74,42 +74,49 @@ export default {
     components: {
     },
     computed: {
+        // Ottiene la lingua corrente dallo store Vuex
         ...mapGetters(['currentLanguage']),
         language() {
             return this.currentLanguage;
         }
     },
     mounted() {
-        this.startCarousel();
-        // Aggiungi evento per fermare il carosello quando la pagina perde il focus
-        window.addEventListener('blur', this.stopCarousel);
-        window.addEventListener('focus', this.startCarousel);
+        this.startCarousel(); // Avvia il carosello all'avvio del componente
+        window.addEventListener('blur', this.stopCarousel); // Mette in pausa il carosello quando la finestra perde il focus
+        window.addEventListener('focus', this.startCarousel); // Riavvia il carosello quando la finestra riacquista il focus
     },
     beforeDestroy() {
-        this.stopCarousel();
-        window.removeEventListener('blur', this.stopCarousel);
-        window.removeEventListener('focus', this.startCarousel);
+        this.stopCarousel(); // Ferma il carosello prima di distruggere il componente
+        window.removeEventListener('blur', this.stopCarousel); // Rimuove l'ascoltatore per l'evento blur
+        window.removeEventListener('focus', this.startCarousel); // Rimuove l'ascoltatore per l'evento focus
     },
     methods: {
+        // Funzione per avviare il carosello e cambiare immagine ogni 4 secondi
         startCarousel() {
-            if (!this.intervalId) {
-                this.intervalId = setInterval(this.nextImage, 4000); // Cambia immagine ogni 4 secondi
-            }
+            this.stopCarousel();
+            this.intervalId = setInterval(this.nextImage, 4000);
         },
+        // Funzione per fermare il carosello
         stopCarousel() {
             if (this.intervalId) {
                 clearInterval(this.intervalId);
                 this.intervalId = null;
             }
         },
+        // Funzione per andare all'immagine successiva e far ripartire il timer del carosello al cambio
         nextImage() {
             this.currentImageIndex = (this.currentImageIndex + 1) % this.alivaraImgs.length;
+            this.startCarousel();
         },
+        // Funzione per andare all'immagine precedente e far ripartire il timer del carosello al cambio
         prevImage() {
             this.currentImageIndex = (this.currentImageIndex - 1 + this.alivaraImgs.length) % this.alivaraImgs.length;
+            this.startCarousel();
         },
+        // Funzione per cambiare l'immagine corrente e far ripartire il timer del carosello al cambio
         setImage(index) {
             this.currentImageIndex = index;
+            this.startCarousel();
         }
     },
 }
@@ -118,7 +125,7 @@ export default {
 <template>
     <div class="alivara-container pb-2">
         <div class="row mt-4">
-            <!-- Carosello di immagini (col-9) -->
+            <!-- Carosello -->
             <div class="col-12 col-md-9 carousel-container">
                 <div class="carousel">
                     <transition-group name="fade" tag="div" class="images-container">
@@ -152,7 +159,7 @@ export default {
                 </div>
             </div>
             
-            <!-- Testo con scroll (col-3) -->
+            <!-- Testo scrollabile -->
             <div class="col-12 col-md-3 text-container">
                 <div class="scrollable-text">
                     <h1 class="mb-4 text-center alivara-title">
