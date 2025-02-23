@@ -74,14 +74,21 @@ export default {
             <a href="https://www.tiktok.com/@mattebasi?_t=ZN-8tWNJGk8hR0&_r=1" class="social-link">
                 <i class="fa-brands fa-tiktok fa-xl"></i>
             </a>
-            <!-- Bandierina italiana per cambiare lingua -->
-            <img 
-                :src="language === 'it' ? '/img/icons/italy.png' : '/img/icons/united-kingdom.png'" 
-                alt="Cambia lingua" 
-                class="language-flag d-none" 
-                @click="toggleLanguage"
-                :title="language === 'it' ? 'Change language' : 'Cambia lingua'"
-            />
+            <!-- Bandierina per cambiare lingua -->
+            <div class="language-switcher d-flex justify-content-between align-items-center">
+                <img 
+                    :src="language === 'it' ? '/img/icons/italy.png' : '/img/icons/united-kingdom.png'" 
+                    alt="Cambia lingua" 
+                    class="language-flag d-none mx-2" 
+                    @click="toggleLanguage"
+                    :title="language === 'it' ? 'Change language' : 'Cambia lingua'"
+                />
+                <span class="language-tooltip d-none d-lg-inline-block">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <p class="d-inline-block ms-1 my-0">{{ language === 'it' ? 'Change language' : 'Cambia lingua' }}</p>
+                </span>
+            </div>
+            
         </div>
 
         <div class="desktop-nav">
@@ -138,7 +145,7 @@ export default {
                                 </ul>
                             </li>
                         </ul>
-</li>
+                    </li>
                     <li class="menu-item">
                         <a href="/#about" class="menu-link">
                             {{ language === 'it' ? 'Chi sono' : 'About' }}
@@ -234,13 +241,19 @@ export default {
                     <a href="https://www.tiktok.com/@mattebasi?_t=ZN-8tWNJGk8hR0&_r=1" class="mobile-social-link">
                         <i class="fa-brands fa-tiktok fa-2x"></i>
                     </a>
-                    <img 
-                        :src="language === 'it' ? '/img/icons/italy.png' : '/img/icons/united-kingdom.png'" 
-                        alt="Cambia lingua" 
-                        class="language-flag d-md-inline-block" 
-                        @click="toggleLanguage"
-                        :title="language === 'it' ? 'Change language' : 'Cambia lingua'"
-                    />
+                    <div class="mobile-language-switcher d-flex justify-content-between align-items-center">
+                        <img 
+                            :src="language === 'it' ? '/img/icons/italy.png' : '/img/icons/united-kingdom.png'" 
+                            alt="Cambia lingua" 
+                            class="language-flag d-md-none mx-2" 
+                            @click="toggleLanguage"
+                            :title="language === 'it' ? 'Change language' : 'Cambia lingua'"
+                        />
+                        <span class="mobile-language-tooltip d-lg-none">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <p class="d-inline-block ms-1 my-0">{{ language === 'it' ? 'Change language' : 'Cambia lingua' }}</p>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -273,6 +286,7 @@ export default {
         display: flex;
         gap: 18px;
         margin-left: 32px;
+        position: relative;
 
         .social-link {
             display: flex;
@@ -307,12 +321,34 @@ export default {
                 }
             }
         }
+        
+        .language-switcher {
+            position: absolute;
+            right: 0; 
+            top: 50%;
+            left: 110%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+        .language-tooltip {
+            white-space: nowrap;
+            opacity: 0.8;
+            
+            * {
+                display: inline-block;
+                animation: slideLeft 2s infinite linear;
+            }
+        }
+    }
     }
     
     .main-nav {
         height: 100%;
         display: flex;
         align-items: center;
+        
         
         .main-menu {
             display: flex;
@@ -689,6 +725,27 @@ export default {
                     transform: translateY(-4px) scale(1.1);
                 }
             }
+
+            .mobile-language-switcher {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                opacity: .8;
+
+                
+
+                .mobile-language-tooltip {
+                    animation: slideLeft 2s infinite linear;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    @media screen and (max-width: 576px) {
+                        font-size: 10px;
+                    }
+                }
+            }
         }
     }
 }
@@ -726,6 +783,18 @@ export default {
         .menu-toggle {
             display: block;
         }
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateX(0);
     }
 }
 </style>
