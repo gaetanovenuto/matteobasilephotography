@@ -48,9 +48,9 @@ export default {
                 <h2 class="text-white" :class="!image.url ? 'no-button' : ''">
                     {{ language === 'it' ? image.it : image.en }}
                 </h2>
-                <button v-if="image.url" class="project-button">
+                <button v-if="image.url" class="series-button">
                     <router-link  :to="/series/ + image.url" class="text-white text-decoration-none">
-                        {{ language === 'it' ? 'Vedi Progetto' : 'See Project' }}
+                        {{ language === 'it' ? 'Vedi Serie' : 'See Serie' }}
                     </router-link>
                 </button>
             </div>
@@ -73,7 +73,7 @@ export default {
                 transform: scale(1.1);
             }
 
-            .project-button {
+            .series-button {
                 background-color: transparent;
             }
         }
@@ -100,7 +100,7 @@ export default {
         top: 50%;
     }
 
-    .project-button {
+    .series-button {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -113,6 +113,10 @@ export default {
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.3s ease;
 
+        @media screen and (max-width: 576px) {
+            padding: 3px 10px;
+        }
+
         &:hover {
             background-color: rgba(0, 86, 179, 0.9);
             transform: translate(-50%, -50%) scale(1.05);
@@ -121,6 +125,10 @@ export default {
         a {
             color: inherit;
             text-decoration: none;
+
+            @media screen and (max-width: 576px) {
+                font-size: 1rem;
+            }
         }
     }
 }
